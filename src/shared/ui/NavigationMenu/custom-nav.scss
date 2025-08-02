@@ -1,0 +1,14 @@
+$nav-underline-link-active-color: #28a745;
+
+@import 'bootstrap/scss/bootstrap';
+
+.nav-underline .nav-link.active {
+  border-bottom-color: #28a745 !important; 
+}
+
+.nav-underline {
+  .nav-link {
+    display: inline-block; 
+    width: auto; 
+  }
+}
