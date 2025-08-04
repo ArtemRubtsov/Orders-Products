@@ -12,17 +12,21 @@ import NavigationMenu from '@/shared/ui/NavigationMenu/NavigationMenu'
 export default function Providers({ children }: { children: ReactNode }) {
   return (
     <I18nextProvider i18n={i18n}>
-        <Provider store={store}>
-            <div className="vh-100 container-fluid px-0">
-                <div className="d-flex flex-column vh-100">
-                        <TopMenu />
-                    <div className="d-flex flex-grow-1">
-                        <NavigationMenu />
-                    {children}
-                    </div>
-                </div>
+      <Provider store={store}>
+        <div className="vh-100 container-fluid px-0">
+          <div className="d-flex flex-column vh-100 px-0">
+            <TopMenu />
+            <div className="d-flex flex-grow-1">
+              <NavigationMenu />
+              <main id="main-content" className="d-flex flex-grow-1 position-relative animate__animated animate__fadeIn">
+                {children}
+              </main>
             </div>
-        </Provider>
+          </div>
+        </div>
+      </Provider>
     </I18nextProvider>
   )
 }
+
+

@@ -10,11 +10,13 @@ const socket = io('http://localhost:3001');
 
 export default function TopMenu() {
   const { t } = useTranslation();
-  const [time, setTime] = useState(new Date());
+  const [time, setTime] = useState<Date | null>(null);
   const [sessions, setSessions] = useState(0);
 
   useEffect(() => {
-    const interval = setInterval(() => setTime(new Date()), 1000);
+    const updateTime = () => setTime(new Date());
+    updateTime(); 
+    const interval = setInterval(updateTime, 1000);
     socket.on('connect', () => socket.emit('join'));
     socket.on('sessionCount', (count: number) => setSessions(count));
     return () => {
@@ -24,14 +26,14 @@ export default function TopMenu() {
     };
   }, []);
 
-  const dayOfWeek = time.toLocaleDateString('en-US', { weekday: 'long' });
-  const date = time.toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: '2-digit' });
-  const clockTime = time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false });
+  const dayOfWeek = time ? time.toLocaleDateString('en-US', { weekday: 'long' }) : '';
+  const date = time ? time.toLocaleDateString('en-US', { day: '2-digit', month: 'long', year: '2-digit' }) : '';
+  const clockTime = time ? time.toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false }) : '--:--:--';
 
   return (
-    <div className='shadow-lg bg-white z-1'>
+    <div className='shadow-lg bg-white z-1 '>
       <div className=''>
-        <div className='row align-items-center bg-white pt-3 pb-3 shadow'>
+        <div className='row g-0 align-items-center bg-white pt-3 pb-3 shadow'>
 
           <div className='col-2 offset-md-custom d-flex align-items-center'>
             <GiBrokenShield className='text-success fs-1' />
@@ -48,9 +50,9 @@ export default function TopMenu() {
           </div>
 
           <div className='col-2 ms-auto text-muted d-flex flex-column align-items-start'>
-            <div>{dayOfWeek}</div>
+            <div>{dayOfWeek || 'Day'}</div>
             <div className='d-flex gap-2'>
-              <div>{date}</div>
+              <div>{date || 'Date'}</div>
               <div>
                 <span className='pe-1'><LuClock10 className='text-success' /></span>
                 <span className='ps-1'>{clockTime}</span>

@@ -1,21 +1,14 @@
-$nav-underline-link-active-color: #28a745;
-
-@import 'bootstrap/scss/bootstrap';
-
-.nav-underline .nav-link.active {
-  border-bottom-color: #28a745 !important; 
+.add-product{
+    border: none;
+    background-color: transparent;
+    color: #28a745;
+    padding: 0;
 }
 
-.nav-underline {
-  .nav-link {
-    display: inline-block; 
-    width: auto; 
-  }
-}
-.btn-settings{
+.btn-close-custom {
   position: absolute;
-  top: 57px;
-  right: 33px;
+  top: -25px;
+  right: -22px;
   background: white;
   border: 1px solid #ddd;
   border-radius: 50%;

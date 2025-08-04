@@ -2,7 +2,7 @@
 @import 'bootstrap/scss/variables';
 
 $spacers: map-merge(
-  $spacers, // Исходные значения (0-5)
+  $spacers,
   (
     6: $spacer * 4,   
     7: $spacer * 5,   
@@ -24,3 +24,94 @@ $spacers: map-merge(
     @include make-col-offset(1.4); 
   }
 }
+body {
+  overflow-x: hidden;
+}
+.btn-order{
+  background-color: transparent;
+  border-color: black;
+  border: 1px solid #4e4d4d60;
+  border-radius: 30px;
+  padding: 15px;
+}
+.btn-trash{
+  border: none;
+  background-color: transparent;
+}
+
+.list-group-item {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem; 
+}
+
+.list-group-item h3 {
+  flex: 1 1 auto; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  margin-bottom: 0; 
+  padding-bottom: 0.25rem; 
+  max-width: 500px;
+  border-bottom: none; 
+  text-decoration: underline; 
+  text-decoration-color: var(--bs-secondary); 
+  text-decoration-thickness: 1px; 
+  text-decoration-style: solid; 
+  text-underline-offset: 0.25rem;
+}
+
+.amount-column {
+  min-width: 120px; 
+  text-align: end; 
+}
+
+
+.icon-plus-circle {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: #6CC04A;
+  color: white;
+  font-weight: 400;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+  line-height: 1;
+  user-select: none;
+}
+
+.d-flex.justify-content-start.align-items-center.mb-5.gap-3 {
+  .icon-plus-circle {
+    margin-right: 12px; 
+  }
+}
+
+.selected-order {
+  background-color: #a9aaac; 
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+}
+
+.selected-order::after {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: #818182;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  border-top-right-radius: 6px;
+  border-bottom-right-radius: 6px;
+  width: 40px;
+  background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' height='24px' viewBox='0 -960 960 960' width='24px' fill='%23e3e3e3'><path d='M504-480 320-664l56-56 240 240-240 240-56-56 184-184Z'/></svg>");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: 44px 44px;
+}
+
+
+@import 'bootstrap/scss/bootstrap';
